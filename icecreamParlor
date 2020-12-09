@@ -52,7 +52,7 @@ def icecreamParlor(m, arr):
     tempArr = dict()
     for i in range(len(arr)):
         if arr[i] not in tempArr:   # if i is not the value to equal m 
-            test[m-arr[i]] = i+1 #dollars to equal m is key, index to return is value
+            tempArr[m-arr[i]] = i+1 #dollars to equal m is key, index to return is value
         else:
             return sorted([i+1, tempArr[arr[i]]])
 if __name__ == '__main__':
