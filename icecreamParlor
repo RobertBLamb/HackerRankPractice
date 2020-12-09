@@ -1,0 +1,76 @@
+#brute force method
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the icecreamParlor function below.
+def icecreamParlor(m, arr):
+    inxArr = []
+    
+    for i in range (0,len(arr)-1):
+        if(arr[i]<=m):   #   if the cost of one is less than amount to spend
+            for j in range(i+1,len(arr)):   #check indexes after i
+                if arr[i] + arr[j] == m:
+                    return [i+1,j+1]
+    return []
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        m = int(input())
+
+        n = int(input())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = icecreamParlor(m, arr)
+
+        fptr.write(' '.join(map(str, result)))
+        fptr.write('\n')
+
+    fptr.close()
+
+# hash/dictionary version
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the icecreamParlor function below.
+def icecreamParlor(m, arr):
+    tempArr = dict()
+    for i in range(len(arr)):
+        if arr[i] not in tempArr:   # if i is not the value to equal m 
+            test[m-arr[i]] = i+1 #dollars to equal m is key, index to return is value
+        else:
+            return sorted([i+1, tempArr[arr[i]]])
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        m = int(input())
+
+        n = int(input())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = icecreamParlor(m, arr)
+
+        fptr.write(' '.join(map(str, result)))
+        fptr.write('\n')
+
+    fptr.close()
+
