@@ -1,0 +1,35 @@
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the truckTour function below.
+#
+def truckTour(petrolpumps):
+    fuel=0
+    stop=0
+    for i in range(len(petrolpumps)):
+        fuel+=petrolpumps[i][0]-petrolpumps[i][1] # if dist greater than fuel
+        if fuel <0:
+            stop=i+1
+            fuel =0
+    return stop 
+        
+    print(len(petrolpumps))
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    petrolpumps = []
+
+    for _ in range(n):
+        petrolpumps.append(list(map(int, input().rstrip().split())))
+
+    result = truckTour(petrolpumps)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
