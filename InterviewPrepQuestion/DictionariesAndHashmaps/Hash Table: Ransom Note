@@ -1,0 +1,37 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the checkMagazine function below.
+def checkMagazine(magazine, note):
+    ransomDict = {}
+    
+    for i in range(len(note)):
+        if note[i] not in ransomDict:
+            ransomDict[note[i]] = 1
+        else:
+            ransomDict[note[i]] += 1
+    for i in range(len(magazine)):
+        if magazine[i] in ransomDict and ransomDict[magazine[i]] > 0:
+            ransomDict[magazine[i]] -= 1
+    
+    if sum(ransomDict.values()) == 0:
+        print("Yes")
+    else:
+        print("No")
+if __name__ == '__main__':
+    mn = input().split()
+
+    m = int(mn[0])
+
+    n = int(mn[1])
+
+    magazine = input().rstrip().split()
+
+    note = input().rstrip().split()
+
+    checkMagazine(magazine, note)
