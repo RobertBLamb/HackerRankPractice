@@ -1,0 +1,50 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minTime function below.
+def minTime(machines, goal):
+    upperBound = (max(machines) * goal) / len(machines)
+    lowerBound = (min(machines) * goal) / len(machines)
+    
+    while upperBound>lowerBound:
+        
+        curDay = (upperBound + lowerBound)//2
+        totalMachines = machinesMade(machines, goal, curDay)
+        if totalMachines >= goal:
+            upperBound = curDay
+        else:
+            lowerBound = curDay + 1
+    return(int(lowerBound))
+
+# checks the total number of machines made on any given day
+def machinesMade(machines, goal, curDay):
+    
+    machinesMade = 0
+    
+    for i in machines:
+        machinesMade += curDay // i
+    
+    return machinesMade
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nGoal = input().split()
+
+    n = int(nGoal[0])
+
+    goal = int(nGoal[1])
+
+    machines = list(map(int, input().rstrip().split()))
+
+    ans = minTime(machines, goal)
+
+    fptr.write(str(ans) + '\n')
+
+    fptr.close()
