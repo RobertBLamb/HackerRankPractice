@@ -1,0 +1,35 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minimumSwaps function below.
+def minimumSwaps(arr):
+    
+    numOfSwaps = 0
+    
+    for i in range(len(arr)):
+        if arr[i] != i + 1: # while element at wrong index
+            while arr[i] != i + 1:
+                temp = arr[arr[i] - 1]  # swap i-th element into right spot
+                arr[arr[i] - 1] = arr[i]
+                arr[i] = temp
+                numOfSwaps +=1                
+    
+    return (numOfSwaps)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    res = minimumSwaps(arr)
+
+    fptr.write(str(res) + '\n')
+
+    fptr.close()
