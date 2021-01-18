@@ -1,0 +1,9 @@
+def fibonacci(n, memo):
+    if not n in memo: # if not yet in dictionary add
+        memo[n] = fibonacci(n-1, memo) + fibonacci(n-2, memo)
+    return memo[n]
+        
+n = int(input())
+fibSeq = {0:0, 1:1} # gives base case for dictionary
+print(fibonacci(n, fibSeq))
+
