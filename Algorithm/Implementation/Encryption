@@ -1,0 +1,50 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the encryption function below.
+# def encryption(s):  # brute force
+#     totalLen = len(s)
+#     rows = round(math.sqrt(totalLen))
+#     cols = math.ceil(math.sqrt(totalLen))
+#     arr = []
+#     encodedStr = ""
+#     if rows * cols >= totalLen:
+#         for i in range(rows):
+#             arr.append(s[i * cols:cols * (i + 1)])
+#         for i in range(len(arr[0])):
+#             for j in range(len(arr)):
+#                 try:
+#                     encodedStr += arr[j][i]
+#                 except:
+#                     print()
+#             #print(sm[i::c],end=" ")
+#             encodedStr += " "  
+#     return str(encodedStr)
+
+def encryption(s):  # better time complexity
+    totalLen = len(s)
+    rows = round(math.sqrt(totalLen))
+    cols = math.ceil(math.sqrt(totalLen))
+    encodedStr = ""
+    s = s.replace(" ", "")
+    
+    if rows * cols >= totalLen:
+        for i in range(cols):
+            encodedStr += s[i::cols] + " "
+    return encodedStr
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = encryption(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
