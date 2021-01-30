@@ -1,0 +1,65 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the boardCutting function below.
+def boardCutting(cost_y, cost_x):   # go highest value to lowest
+    totalCost = 0
+    ySeg = 1
+    xSeg = 1
+    yUsedLast = False   # if values are equal use previous array
+    cost_y.sort(reverse=True)
+    cost_x.sort(reverse=True)
+    
+    while cost_x and cost_y:    # both arrays have values
+        if cost_y[0] > cost_x[0]:
+            totalCost += cost_y.pop(0) * xSeg
+            ySeg += 1
+            yUsedLast = True
+        elif cost_y[0] < cost_x[0]:
+            totalCost += cost_x.pop(0) * ySeg
+            xSeg += 1
+            yUsedLast = False
+        elif cost_y[0] == cost_x[0] and yUsedLast:
+            totalCost += cost_y.pop(0) * xSeg
+            ySeg += 1
+        else:
+            totalCost += cost_x.pop(0) * ySeg
+            xSeg += 1
+    if cost_y:  # run through last array
+        return boardCuttingOneSide(totalCost, xSeg, cost_y)
+    else:
+        return boardCuttingOneSide(totalCost, ySeg, cost_x)
+    
+
+def boardCuttingOneSide(totalCost, numSeg, arr):
+    while arr:
+        totalCost += arr.pop(0) * numSeg
+    
+    return totalCost % (10**9 + 7)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+
+    for q_itr in range(q):
+        mn = input().split()
+
+        m = int(mn[0])
+
+        n = int(mn[1])
+
+        cost_y = list(map(int, input().rstrip().split()))
+
+        cost_x = list(map(int, input().rstrip().split()))
+
+        result = boardCutting(cost_y, cost_x)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
