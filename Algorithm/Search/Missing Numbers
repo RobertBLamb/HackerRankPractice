@@ -1,0 +1,49 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the missingNumbers function below.
+def missingNumbers(arr, brr):
+    arrDict = {}
+    crr = []
+    for i in range(len(brr)):
+        if brr[i] in arrDict:
+            arrDict[brr[i]] += 1
+        else:
+            arrDict[brr[i]] = 1
+        
+        try:
+            if arr[i] in arrDict:
+                arrDict[arr[i]] -= 1
+            else:
+                arrDict[arr[i]] = -1
+        except:
+            print()
+    
+    for i in arrDict:
+        if arrDict[i] > 0:
+            crr.append(i)
+    crr.sort()
+    return(crr)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    m = int(input())
+
+    brr = list(map(int, input().rstrip().split()))
+
+    result = missingNumbers(arr, brr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
