@@ -1,0 +1,29 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the marsExploration function below.
+def marsExploration(s):
+    message = ["S", "O", "S"]
+    n = len(message)
+    mutations = 0
+    for i in range(len(s)):
+        print(s[i])
+        if s[i] != message[i % n]:
+            mutations += 1
+    return mutations
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = marsExploration(s)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
