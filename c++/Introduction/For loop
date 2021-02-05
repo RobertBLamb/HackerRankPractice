@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+    string numStrings[] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};    
+    int firstNum, secondNum;
+    cin>>firstNum>>secondNum;
+    // Complete the code.
+    for(int i = firstNum; i <= secondNum; i++)
+    {
+        if (i <= 9)
+        {
+            cout << numStrings[i-1] << endl;    
+        }
+        else if(i % 2 == 0)
+        {
+            cout << "even" << endl;
+        }
+        else 
+        {
+            cout << "odd" << endl;
+        }
+    }
+    
+    return 0;
+}
