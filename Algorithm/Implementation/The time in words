@@ -1,0 +1,42 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the timeInWords function below.
+def timeInWords(h, m):   
+    time = ["one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eightteen","nineteen","twenty","twenty one","twenty two","twenty threen","twenty four","twenty five","twenty six","thewnty seven","twenty eight","twenty nine","thirty","thirty one","thirty two","thirty three","thirty four","thirty five","thirty six","thirty seven","thirty eight","thirty nine","fourty","fourty one","fourty one","fourty two","fourty three","fourty four","fourty five","fourty six","fourty seven","fourty eight","fouty nine","fifty","fifty one","fifty two","fifty two","fifty three","fifty four","fifty five","fifty six","fifty seven","fifty eight","fifty nine"]
+    if m == 00:
+        return(time[h-1] + " o' clock")
+    if m == 30 :
+        return("half past " + time[h-1])
+    if m == 45 :
+        return("quarter to " + time[h])
+    if m == 15 :
+        return("quarter past " + time[h-1])
+    if m<30:
+        if m<10:
+            return(time[m-1] + " minute past " + time[h-1])
+        else :
+            return(time[m-1] + " minutes past " + time[h-1])
+    if m >30:
+        if 60-m<10:
+            return(time[60-m-1] + " minutes to " + time[h])
+        else :
+            return(time[60-m-1] + " minutes to " + time[h])
+        
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    h = int(input())
+
+    m = int(input())
+
+    result = timeInWords(h, m)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
