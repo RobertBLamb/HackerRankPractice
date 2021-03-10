@@ -1,0 +1,14 @@
+def has_cycle(head):
+    if head is None:
+        return False
+    
+    current = head
+    target = head.next
+    
+    while current != target:
+        if current == None or target == None:
+            return False
+        
+        next, target = next.next, target.next
+    
+    return True
