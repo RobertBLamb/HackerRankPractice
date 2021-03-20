@@ -1,0 +1,27 @@
+def nextMove(n,r,c,grid):
+    pCoords = findPrincess(n, grid)
+    pRow = pCoords[0];
+    pCol = pCoords[1];
+    
+    # Move vertical until we are on her row
+    if (pRow != r):
+        return "UP" if pRow < r else "DOWN"
+        
+    # Move horizontal until we are on her column
+    if (pCol != c):
+        return "RIGHT" if pCol > c else "LEFT"
+            
+
+def findPrincess(n, grid):
+    for row in range(n):
+        for column in range(n):
+            if (grid[row][column] == 'p'):
+                return (row, column)
+
+n = int(input())
+r,c = [int(i) for i in input().strip().split()]
+grid = []
+for i in range(0, n):
+    grid.append(input())
+
+print(nextMove(n,r,c,grid))
