@@ -1,0 +1,27 @@
+#!/bin/python3
+
+def nextMove(posr, posc, board):
+    dirtR, dirtC = findDirt(board)
+    
+    if dirtR < posr:
+        print("UP")
+    elif dirtR > posr:
+        print("DOWN")
+    elif dirtC < posc:
+        print("LEFT")
+    elif dirtC > posc:
+        print("RIGHT")
+    else:
+        print('CLEAN')
+    
+    
+def findDirt(board):
+    for i in range(len(board)):
+        for j in range(len(board)):
+            if board[i][j] == 'd':
+                return(i, j)
+
+if __name__ == "__main__":
+    pos = [int(i) for i in input().strip().split()]
+    board = [[j for j in input().strip()] for i in range(5)]
+    nextMove(pos[0], pos[1], board)
