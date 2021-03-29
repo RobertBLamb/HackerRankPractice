@@ -1,0 +1,40 @@
+#!/bin/python3
+
+import os
+import sys
+import bisect
+
+#
+# Complete the runningMedian function below.
+#
+def runningMedian(a):
+    medians = []
+    curArr = []
+    for i in range(len(a)):
+        
+        bisect.insort(curArr,a[i])
+        
+        if(i%2==0): #odd
+            medians.append(curArr[i//2])
+        else:   #even
+            medians.append((curArr[i//2] + curArr[i//2 + 1])/2)
+    
+    return(medians)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    a_count = int(input())
+
+    a = []
+
+    for _ in range(a_count):
+        a_item = int(input())
+        a.append(a_item)
+
+    result = runningMedian(a)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
