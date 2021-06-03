@@ -1,0 +1,44 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+def isBalanced(s):
+    s_list = []
+    s_list[:0] = s
+    
+    stack = []
+    
+    while s_list:
+        top_char = s_list.pop()
+        
+        if stack:
+            if (top_char == '{' and stack[-1] == '}') or (top_char == '[' and stack[-1] == ']') or (top_char == '(' and stack[-1] == ')'):
+                stack.pop()
+            else:
+                stack.append(top_char)
+        else:
+            stack.append(top_char)
+
+    if stack:
+        return "NO"
+    else:
+        return "YES"
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input().strip())
+
+    for t_itr in range(t):
+        s = input()
+
+        result = isBalanced(s)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
